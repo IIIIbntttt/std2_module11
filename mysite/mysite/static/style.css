@@ -1,0 +1,59 @@
+
+    body {
+        background-color:black;
+        color: greenyellow;
+    }
+
+    .video-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        color: black;
+    }
+
+    .video-list__item {
+        display: block;
+        margin: 0 1em 1em 0;
+        padding: 1em;
+        border-radius: 1em;
+        background-color: snow;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header__logo {
+        flex-grow: 2;
+        display: block;
+        background-color: white;
+        margin-right: 30vw;
+        text-align: center;
+        font-size: 3em;
+        border-radius: 1em;
+    }
+
+    .header__auth {
+        background-color: white;
+        border-radius: 1em;
+        padding: 0em 1em 0em;
+        display: flex;
+        align-items: center;
+        color: black;
+    }
+
+    .like-button,
+    .dislike-button {
+        font-size: 20px;
+        color: white;
+        font-weight: bolder;
+        background-color: teal;
+        cursor: pointer;
+    }
+
+    .like-button:disabled,
+    .dislike-button:disabled {
+        background-color: red;
+        cursor: not-allowed;
+    }

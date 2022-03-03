@@ -1,0 +1,15 @@
+{% extends "video/base.html" %}
+
+{% block title %}
+    Загрузка видео - MyTube
+{% endblock title %}
+
+{% block content %}
+    <h2>Загрузить видео на MyTube</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Загрузить видео</button>
+    </form>
+{% endblock content %}

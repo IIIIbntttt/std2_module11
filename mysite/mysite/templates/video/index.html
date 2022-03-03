@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block title %}
+Гланвая - MyTube
+{% endblock title %}
+
+{% block content %}
+<h1>MyTube - Добро пожаловать!</h1>
+<ul class="video-list">
+{% for v in videos %}
+    <li class="video-list__item">
+        <h2><a href="{% url 'video' v.id %}">{{v.name}}</a></h2>
+        <p>{{v.describtion}}</p>
+        <p><strong>Дата загрузки</strong>{{v.created_datetime}}</p>
+        <p> Like<strong>({{v.likes}})</strong></p>
+        <p> Dislike <strong>({{v.dislikes}})</strong></p>
+    </li>
+{% empty %}
+    <li>Технические шоколадки, видео скоро появится</li>
+{% endfor %}
+</ul>
+{% endblock content %}

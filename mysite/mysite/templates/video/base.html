@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
+<body>
+    <header class="header">
+        <a class="header_logo" href="/" title="На главную">MyTube</a>
+
+        <div class="header_auth">
+            {% if user.is_authenticated %}
+            Вы вошли как&nbsp;<strong>{{}user.username}</strong>&nbsp;(<a href="{% url 'logout' %}">Выйти</a>)
+
+            <ul>
+                <li><a href="{% url 'user_videos' %}">Мои видео</a></li>
+                <li><a href="{% url 'upload_video' %}">Загрузить видео</a></li>
+            </ul>
+            {% else %}
+                Вы не вошли в систему
+                (<a href="{% url 'login' %}">Мои видео</a>
+                или
+                <a href="{% url 'signup' %}">Зарегистрируйтесь</a>)
+            {% endif %}
+        </div>
+    </header>
+    <hr />
+    <main>
+    {% block content %}
+
+    {% endblock content %}
+    </main>
+    <footer>
+        <hr />
+    </footer>
+</body>
+</html>

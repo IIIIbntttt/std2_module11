@@ -1,0 +1,24 @@
+{% extends "video/base.html" %}
+
+{% block title %}
+    Мои Видео - MyTube
+{% endblock title %}
+
+{% block content %}
+    <h2>Мои Видео</h2>
+    <ul class="video-list">
+        {% for v in videos %}
+            <li class="video-list__item">
+                <h2><a href="{% url 'video' %}">{{v.name}}</a></h2>
+                <p>{{v.describtion}}</p>
+                <p><strong>Дата загрузки</strong>{{v.created_datetime}}</p>
+                <p><strong>Ограничения: </strong>{{v.restrictions}}</p>
+                <p> Like<strong>({{v.likes}})</strong></p>
+                <p>Dislike <strong>({{v.dislikes}})</strong></p>
+            </li>
+        {% empty %}
+            <li>У вас нет загруженных видео</li>
+            <li><a href="{% url 'upload_video' %}">Загрузите что-нибудь</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

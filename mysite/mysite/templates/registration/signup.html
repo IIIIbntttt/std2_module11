@@ -1,0 +1,14 @@
+{% extends "video/base.html" %}
+
+{% block title %}
+    Регистрация - MyTube
+{% endblock title %}
+
+{% block content %}
+    <h2>Регистрaция на MyTube</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+{% endblock content %}

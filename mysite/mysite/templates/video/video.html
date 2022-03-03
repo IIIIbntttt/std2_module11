@@ -1,0 +1,48 @@
+{% extends "video/base.html" %}
+{% load static %}
+
+{% block title %}
+{{video.name}} - MyTube
+{% endblock title %}
+
+{% block content %}
+<div>
+    <video
+            style="width: 60vw; margin: auto; display: block"
+            src="{{video.videfile.url}}"
+            controls>
+    </video>
+</div>
+<h1>{{video.name}}
+    <button class="like-button" {% if is_liked %}disabled{% endif %}> Like<strong>({{video.likes}})</strong></button>
+    <button class="dislike-button" {% if is_disliked %}disabled{% endif %}> Dislike<strong>({{video.dislikes}})</strong>
+    </button>
+    <script>
+            let likeButton = document.querySelector(".like-button");
+            let dislikeButton = document.querySelector(".dislike-button");
+
+            let likes = likeButton.querySelector("strong");
+            let dislikes = dislikeButton.querySelector("strong");
+
+            likeButton.addEventListener("click", async function() {
+                let r = await fetch("{% url 'like' video.id %}");
+                let data = await r.json();
+                likes.innerHTML = data["likes"];
+                dislikes.innerHTML = data["dislikes"];
+                likeButton.setAttribute('disabled', true);
+                dislikeButton.removeAttribute('disabled');
+            });
+
+            dislikeButton.addEventListener("click", async function() {
+                let r = await fetch("{% url 'dislike' video.id %}");
+                let data = await r.json();
+                likes.innerHTML = data["likes"];
+                dislikes.innerHTML = data["dislikes"];
+                likeButton.removeAttribute('disabled');
+                dislikeButton.setAttribute('disabled', true);
+            });
+    </script>
+</h1>
+<p>{{video.describtion}}</p>
+<p><strong>Автор:</strong>{{video.created_by.username}}</p>
+{% endblock content %}
