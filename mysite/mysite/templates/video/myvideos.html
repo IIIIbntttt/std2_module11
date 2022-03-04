@@ -9,7 +9,7 @@
     <ul class="video-list">
         {% for v in videos %}
             <li class="video-list__item">
-                <h2><a href="{% url 'video' %}">{{v.name}}</a></h2>
+                <h2><a href="{% url 'video' v.id %}">{{v.name}}</a></h2>
                 <p>{{v.describtion}}</p>
                 <p><strong>Дата загрузки</strong>{{v.created_datetime}}</p>
                 <p><strong>Ограничения: </strong>{{v.restrictions}}</p>

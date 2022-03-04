@@ -40,15 +40,16 @@ class VideoCreateView(generic.CreateView):
     ]
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        return super().form_valid()
+        return super().form_valid(form)
 
 def get_likes(video_id):
-    v = Video.objects.get(id-video_id)
+    v = Video.objects.get(id=video_id)
 
     return {
-        'likes': v.like_set.filter(value_gt=0).count(),
-        'dislikes': v.like_set.filter(value_lt=0).count()
+        'likes': v.like_set.filter(value__gt=0).count(),
+        'dislikes': v.like_set.filter(value__lt=0).count()
     }, v
+
 def video(request, id):
     likes, v = get_likes(id)
 
