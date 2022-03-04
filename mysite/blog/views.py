@@ -15,7 +15,7 @@ def index(request):
 
 def userVideos(request):
     videos = Video.objects.filter(created_by=request.user.id).all()
-    return render(request, 'mysite/myvideo.html', {"videos": videos})
+    return render(request, 'video/myvideos.html', {"videos": videos})
 
 class UserCreationFormWithEmail(UserCreationForm):
     class Meta:
@@ -34,9 +34,9 @@ class VideoCreateView(generic.CreateView):
     model = Video
     fields = [
         'name',
-        'describtion'
-        'category'
-        'videofile'
+        'describtion',
+        'category',
+        'videofile',
     ]
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -52,7 +52,7 @@ def get_likes(video_id):
 def video(request, id):
     likes, v = get_likes(id)
 
-    return render(request, 'blog/video.html', {
+    return render(request, 'video/video.html', {
         'video': v,
         'is_liked': v.like_set.filter(user_id=request.user.id, value=1).count() == 1,
         'is_disliked': v.like_set.filter(user_id=request.user.id, value=1).count() == 1,

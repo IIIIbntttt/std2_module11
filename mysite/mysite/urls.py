@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('django.contrib.auth.urls')),
     path('signup/', SignUpView.as_view(), name="signup"),
-    path('myvideo/', userVideos, name="user_video"),
+    path('myvideo/', userVideos, name="user_videos"),
     path('upload/', VideoCreateView.as_view(), name="upload_video"),
     path('video/<int:id>', video, name="video"),
     path('', include('blog.urls')),

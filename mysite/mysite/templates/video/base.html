@@ -14,7 +14,7 @@
 
         <div class="header_auth">
             {% if user.is_authenticated %}
-            Вы вошли как&nbsp;<strong>{{}user.username}</strong>&nbsp;(<a href="{% url 'logout' %}">Выйти</a>)
+            Вы вошли как&nbsp;<strong>{{user.username}}</strong>&nbsp;(<a href="{% url 'logout' %}">Выйти</a>)
 
             <ul>
                 <li><a href="{% url 'user_videos' %}">Мои видео</a></li>
